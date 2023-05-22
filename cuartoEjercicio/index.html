@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+    <title>Mayor Del grupo</title>
+</head>
+<body>
+    <!-- Construir el algoritmo que solicite el nombre y edad de 3
+    personas y determine el nombre de la persona con mayor edad. -->
+
+    <fieldset>
+        <h3>Ingresa la siguiente informacion</h3>
+        <form id="myFormMayor">
+            <fieldset>
+               
+                <legend>¿Quien es mayor?</legend>
+                <label>Ingresa el nombre de la primera persona </label><br>
+                <input type="text" name="persona_1_Nombre"   required><br>
+                <label>Ingresa la edad de la primera persona </label><br>
+                <input type="text" name="persona_1_Edad"   required><br>
+                <label>Ingresa el nombre de la segunda persona </label><br>
+                <input type="text" name="persona_2_Nombre"   required><br>
+                <label>Ingresa la edad de la segunda persona </label><br>
+                <input type="text" name="persona_2_Edad"   required><br>
+                <label>Ingresa el nombre de la tercera persona </label><br>
+                <input type="text" name="persona_3_Nombre"   required><br>
+                <label>Ingresa la edad de la tercera persona </label><br>
+                <input type="text" name="persona_3_Edad"   required><br><br>
+                <input type="submit" value="Calcular">
+            </fieldset>
+        </form>
+    </fieldset>
+
+    <h1>Personas Registradas</h1>
+    <table style="border-collapse: separate;
+    border-spacing: 10px 5px;">
+        <thead>
+            <tr>
+                <th scope="row">Nombre</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody class="myTablaPersonas"> 
+
+        </tbody>
+        
+      </table>
+    <h1>Persona Mayor</h1>
+      <table style="border-collapse: separate;
+    border-spacing: 10px 5px;">
+        <thead>
+            <tr>
+                <th scope="row">Nombre de la persona mayor</th>
+                <th>Edad de la persona mayor</th>
+            </tr>
+        </thead>
+        <tbody class="myTablaMayor"> 
+
+        </tbody>
+        
+      </table>
+</body>
+</html>

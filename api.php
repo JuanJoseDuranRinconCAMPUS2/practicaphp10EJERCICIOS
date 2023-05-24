@@ -1,36 +1,40 @@
 <?php
-// Construir el algoritmo que solicite el nombre y edad de 3
-// personas y determine el nombre de la persona con mayor edad.
-
+    // Construir el algoritmo que lea por teclado dos números,
+    // si el primero es mayor al segundo informar su suma y
+    // diferencia, en caso contrario, informar el producto y la
+    // división del primero respecto al segundo.
 
     header("Content-Type: application/json; charset:UTF-8");
     $_DATA = json_decode(file_get_contents("php://input"), true);
     $_METHOD = $_SERVER["REQUEST_METHOD"];
 
-    function Mayor($_DATA){ 
-        $mayor = max($_DATA["persona_1_Edad"], $_DATA["persona_2_Edad"], $_DATA["persona_3_Edad"]);
-        $resultado = match (true) {
-            $mayor == $_DATA["persona_1_Edad"] => ["Nombre" => $_DATA["persona_1_Nombre"], "Edad"=> $_DATA["persona_1_Edad"]],
-            $mayor == $_DATA["persona_2_Edad"] => ["Nombre" => $_DATA["persona_2_Nombre"], "Edad"=> $_DATA["persona_2_Edad"]],
-            $mayor == $_DATA["persona_3_Edad"] => ["Nombre" => $_DATA["persona_3_Nombre"], "Edad"=> $_DATA["persona_3_Edad"]],
-            default => 'ninguno',
+    function Operacion($_DATA){
+        $mayor = max($_DATA["Numero1"], $_DATA["Numero2"]);
+        $operacion = match (true){ 
+            $mayor == $_DATA["Numero1"] => ["Operacion1" => ($_DATA["Numero1"] - $_DATA["Numero2"]), "Operacion2"=> ($_DATA["Numero1"] + $_DATA["Numero2"])],
+            $mayor == $_DATA["Numero2"] => ["Operacion1" => ($_DATA["Numero1"] * $_DATA["Numero2"]), "Operacion2"=> ($_DATA["Numero1"] / (($_DATA["Numero2"] == 0) ? 1 : $_DATA["Numero2"]))],
+            
         };
-        
-        return $resultado;
-    };
+        return $operacion;
+    }
+    function mayor($_DATA){ 
+        $mayor = max($_DATA["Numero1"], $_DATA["Numero2"]);
+        return $mayor;
 
+    }
     $validate = function($_DATA){
-        if (is_numeric($_DATA["persona_1_Edad"]) && is_numeric($_DATA["persona_2_Edad"]) && is_numeric($_DATA["persona_3_Edad"])) {
+        if (is_numeric($_DATA["Numero1"]) && is_numeric($_DATA["Numero2"])) {
             $mensaje = (array) [
-                "Persona1"=> ["Nombre" => $_DATA["persona_1_Nombre"], "Edad"=> $_DATA["persona_1_Edad"]],
-                "Persona2" => ["Nombre"=> $_DATA["persona_2_Nombre"], "Edad"=> $_DATA["persona_2_Edad"]],
-                "Persona3" => ["Nombre"=> $_DATA["persona_3_Nombre"], "Edad"=> $_DATA["persona_3_Edad"]],
-                "Mayor" => Mayor($_DATA),
+                "Numero1" => $_DATA["Numero1"],
+                "Numero2" => $_DATA["Numero2"],
+                "Operaciones" => Operacion($_DATA),
+                "Mayor" => mayor($_DATA),
+
             ];
             echo json_encode($mensaje, JSON_PRETTY_PRINT);
         }else {
-            $mensaje = "error data no compatible";
-        }
+            $mensaje = "ERROR";
+        };
     };
 
     try {
@@ -40,5 +44,4 @@
     }catch (\Throwable $th) {
         $mensaje = "ERROR";
     };
-
 ?>

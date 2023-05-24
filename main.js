@@ -1,13 +1,14 @@
-//Dado un número indicar si es par o impar y si es mayor de 10
+// Construir el algoritmo para determinar el voltaje de un
+// circuito a partir de la resistencia y la intensidad de corriente.
 
-let myForm = document.querySelector("#myFormPrimo");
-let myTabla = document.querySelector(".tablaNumeros");
+let myFormVoltaje = document.querySelector("#myFormVoltaje");
+let myTabla = document.querySelector(".tablaResultados");
 let myHeaders = new Headers({"content-Type": "application/json"});
 let config = {
     headers : myHeaders,
 }
 
-myFormPrimo.addEventListener("submit", async(e)=>{
+myFormVoltaje.addEventListener("submit", async(e)=>{
     e.preventDefault();
     let data = Object.fromEntries(new FormData(e.target));
     config.method = "POST";
@@ -19,16 +20,19 @@ myFormPrimo.addEventListener("submit", async(e)=>{
         var resJS = JSON.parse(res);
         console.log(resJS);
         document.querySelector("#contenido").innerHTML = `
-            <th>${resJS.Numero}</th>
-            <td>${resJS.Par}</td>
-            <td>${resJS.Mayor}</td>
-        `;
+            <th>${resJS.Voltaje}</th>
+            <th>=</th>
+            <th>${resJS.Corriente}</th>
+            <th>*</th>
+            <th>${resJS.Resistencia}</th>
+            `;
     }else{
         document.querySelector("#contenido").innerHTML = `
     <th>ERROR</th>
+    <th>=</th>
     <th>ERROR</th>
+    <th>*</th>
     <th>ERROR</th>
-
     `;
 
     }

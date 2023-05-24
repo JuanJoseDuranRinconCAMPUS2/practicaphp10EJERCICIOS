@@ -1,38 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sp">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js" defer></script>
-    <title>Calculadora de pares </title>
+    <title>Voltaje</title>
 </head>
 <body>
-    <!-- Dado un número indicar si es par o impar y si es mayor de 10 -->
+    <!-- Construir el algoritmo para determinar el voltaje de un
+    circuito a partir de la resistencia y la intensidad de corriente. -->
+
     <fieldset>
-        <h3>Ingresa Acontinuacion el numero</h3>
-        <form id="myFormPrimo">
+        <h3>Calculadora de Voltaje</h3>
+        <form id="myFormVoltaje">
             <fieldset>
-            <legend>Numero</legend>
-            <label>Ingresa tu numero </label><br>
-            <input type="text" name="Numero"   required>
-            <input type="submit" value="Hecho">
-        </fieldset>
+                <div class="ohm-Formula">
+                    <div class="voltaje">V</div>
+                    <div class="igual">=</div>
+                    <div class="corriente">I</div>
+                    <div class="Por">x</div>
+                    <div class="resistencia">R</div>
+                  </div><br>
+                <legend>Formula  Ohm</legend>
+                <label>Ingresa el valor de la corriente </label><br>
+                <input type="text" name="Corriente"   required><br>
+                <label>Ingresa el valor de la resistencia </label><br>
+                <input type="text" name="Resistencia"   required><br><br>
+                <input type="submit" value="Calcular">
+            </fieldset>
         </form>
     </fieldset>
     <table style="border-collapse: separate;
     border-spacing: 10px 5px;">
         <thead>
-        <tr>
-            <th scope="row">Numero</th>
-            <th>¿Es par?</th>
-            <th>¿Es mayor que 10?</th>
-        </tr>
+            <tr>
+                <th scope="row">Voltaje</th>
+                <th>Igual</th>
+                <th>Corriente</th>
+                <th>Operacion</th>
+                <th>Resistencia</th>
+            </tr>
         </thead>
-        <tbody class="tablaNumeros" > 
+        <tbody class="tablaResultados" > 
 
         </tbody>
         
       </table>
+      
+      
+      <style>
+        .ohm-Formula {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .ohm-Formula div {
+    padding: 10px;
+        }
+
+    .voltaje {
+    background-color: #ff9800;
+    color: #fff;
+    }
+
+    .igual,
+    .Por {
+    font-weight: bold;
+    }
+
+    .corriente {
+    background-color: #03a9f4;
+    color: #fff;
+    }
+
+    .resistencia {
+    background-color: #4caf50;
+    color: #fff;
+    }
+
+      </style>
 </body>
 </html>

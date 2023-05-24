@@ -1,28 +1,25 @@
 <?php
-    // Dado un número indicar si es par o impar y si es mayor de 10.
+    // Construir el algoritmo para determinar el voltaje de un
+    // circuito a partir de la resistencia y la intensidad de corriente.
     header("Content-Type: application/json; charset:UTF-8");
     $_DATA = json_decode(file_get_contents("php://input"), true);
     $_METHOD = $_SERVER["REQUEST_METHOD"];
 
-    function Mayor(float $Numero){
-        return ($Numero < 10) ? "El numero $Numero es menor a Diez" : (($Numero == 10) ? "El numero $Numero es Diez" : "El numero $Numero es mayor a Diez");
-    }
-    function ParOrNot(float $Numero){ 
-        $residuo = $Numero%2;
-        return ($residuo == 0) ? "El numero $Numero es par" : "El numero $Numero es impar";
+    function voltaje(float $Corriente, float $Resistencia){ 
+        $Voltaje = ($Corriente * $Resistencia);
+        return $Voltaje;
+    };
 
-    }
     $validate = function($_DATA){
-        if (is_numeric($_DATA["Numero"])) {
+        if (is_numeric($_DATA["Corriente"]) && is_numeric($_DATA["Resistencia"])) {
             $mensaje = (array) [
-                "Numero" => $_DATA["Numero"],
-                "Par" => ParOrNot(...$_DATA),
-                "Mayor" => Mayor(...$_DATA),
+                "Voltaje" => strval(voltaje(...$_DATA)),
+                "Corriente" => $_DATA["Corriente"],
+                "Resistencia" => $_DATA["Resistencia"],
             ];
-        echo json_encode($mensaje, JSON_PRETTY_PRINT);
-        
+            echo json_encode($mensaje, JSON_PRETTY_PRINT);
         }else {
-            $mensaje = "ERROR";
+            $mensaje = "error data no compatible";
         }
     };
 
@@ -34,5 +31,6 @@
         $mensaje = "ERROR";
     };
     
+
 
 ?>

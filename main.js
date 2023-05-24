@@ -1,22 +1,36 @@
-// Construir el algoritmo para un programa que ingrese tres
-// notas de un alumno, si el promedio es menor o igual a 3.9
-// mostrar un mensaje "Estudie“, de lo contrario un mensaje que
-// diga "becado"
+//Dado un número indicar si es par o impar y si es mayor de 10
 
-let myForm = document.querySelector("#myForm");
+let myForm = document.querySelector("#myFormPrimo");
+let myTabla = document.querySelector(".tablaNumeros");
 let myHeaders = new Headers({"content-Type": "application/json"});
 let config = {
     headers : myHeaders,
 }
 
-myForm.addEventListener("submit", async(e)=>{
+myFormPrimo.addEventListener("submit", async(e)=>{
     e.preventDefault();
     let data = Object.fromEntries(new FormData(e.target));
     config.method = "POST";
     config.body = JSON.stringify(data);
     console.log(data);
+    myTabla.insertAdjacentHTML('beforeend', '<tr id="contenido"></tr>');
     let res = await (await fetch("api.php", config)).text();
-    document.querySelector("pre").innerHTML = res;
-    console.log(res);
-})
+    if (res) {
+        var resJS = JSON.parse(res);
+        console.log(resJS);
+        document.querySelector("#contenido").innerHTML = `
+            <th>${resJS.Numero}</th>
+            <td>${resJS.Par}</td>
+            <td>${resJS.Mayor}</td>
+        `;
+    }else{
+        document.querySelector("#contenido").innerHTML = `
+    <th>ERROR</th>
+    <th>ERROR</th>
+    <th>ERROR</th>
 
+    `;
+
+    }
+    
+})

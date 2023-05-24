@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-<html lang="sp">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promedio notas</title>
     <script src="main.js" defer></script>
+    <title>Calculadora de pares </title>
 </head>
 <body>
-    <!-- Construir el algoritmo para un programa que ingrese tres
-    notas de un alumno, si el promedio es menor o igual a 3.9
-    mostrar un mensaje "Estudie“, de lo contrario un mensaje que
-    diga "becado" -->
+    <!-- Dado un número indicar si es par o impar y si es mayor de 10 -->
     <fieldset>
-        <h3>Hola camper Ingresa tus notas a continuacion</h3>
-        <form id="myForm">
-            <legend>Nota 1</legend>
-            <label>Ingresa tu primera nota</label><br>
-            <input type="text" name="nota"   required>
-
-            <legend>Nota 2</legend>
-            <label>Ingresa tu segunda nota</label><br>
-            <input type="text" name="nota2" pattern="[0-9-.]+" required>
-
-            <legend>Nota 3</legend>
-            <label>Ingresa tu tercera nota</label><br>
-            <input type="text" name="nota3" pattern="[0-9-.]+" required><br><br>
+        <h3>Ingresa Acontinuacion el numero</h3>
+        <form id="myFormPrimo">
+            <fieldset>
+            <legend>Numero</legend>
+            <label>Ingresa tu numero </label><br>
+            <input type="text" name="Numero"   required>
             <input type="submit" value="Hecho">
+        </fieldset>
         </form>
     </fieldset>
-    <pre>
+    <table style="border-collapse: separate;
+    border-spacing: 10px 5px;">
+        <thead>
+        <tr>
+            <th scope="row">Numero</th>
+            <th>¿Es par?</th>
+            <th>¿Es mayor que 10?</th>
+        </tr>
+        </thead>
+        <tbody class="tablaNumeros" > 
 
-    </pre>
+        </tbody>
+        
+      </table>
 </body>
 </html>

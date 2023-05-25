@@ -5,34 +5,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js" defer></script>
-    <title>Operaciones Basicas</title>
+    <title>Document</title>
 </head>
 <body>
-    <!-- Construir el algoritmo que lea por teclado dos números,
-    si el primero es mayor al segundo informar su suma y
-    diferencia, en caso contrario, informar el producto y la
-    división del primero respecto al segundo. -->
+    <!-- Construir el algoritmo en Javascript para un programa
+    para cualquier cantidad de estudiantes que lea el nombre,
+    el sexo y la nota definitiva y halle al estudiante con la mayor
+    nota y al estudiante con la menor nota y cuantos eran
+    hombres y cuantos mujeres. -->
 
     <fieldset>
-        <h3>Ingresa Acontinuacion los numeros</h3>
-        <form id="myFormOperaciones">
+        <h3>Ingresa la siguiente data</h3>
+        <form id="myFormUsuarios">
             <fieldset>
-                <legend>Primer Numero</legend>
-                <label>Ingresa tu primer numero </label><br>
-                <input type="text" name="Numero1"   required><br>
-            </fieldset>
-            <fieldset>
-                <legend>Segundo Numero</legend>
-                <label>Ingresa tu segundo numero </label><br>
-                <input type="text" name="Numero2"   required><br>
+                <legend># Estudiantes</legend>
+                <label>Ingresa el numero de estudiantes a registrar </label><br>
+                <input type="text" name="estudiantes"   required><br>
             </fieldset><br>
-            <input type="submit" value="Hecho">
+            <button type="submit" value="Hecho">Hecho</button>
         </form>
     </fieldset>
-    <table style="border-collapse: separate;
-    border-spacing: 10px 5px;" id="myTablaNumeros">
-       
+    <br>
+    <br>
+    <br>
+    <fieldset>
+        <h3>Ingresa la informacion de los estudiantes</h3>
+        <form id="myFormNombres">     
+            <div id="content">
+                
+            </div>
+            <div id="button">
+
+            </div>
+        </form>
+    </fieldset>
+
+    <br>
+    <br>
+    <table class="default" style="border-collapse: separate; border-spacing: 10px 5px;">     
+        <thead>
+            <tr>
+                <th scope="col">Puntuacion</th>
+                <th>Nombre</th>
+                <th>Genero</th>
+                <th>Nota</th>
+              </tr>
+        </thead> 
         
+        <tbody id="tableContent">
+
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <table class="default" style="border-collapse: separate; border-spacing: 10px 5px;">     
+        <thead>
+            <tr>
+                  <th scope="col">Cantidad</th>
+                  <th>#</th>
+            </tr>
+        </thead> 
+          
+        <tbody id="tableContentMyF">
+  
+        </tbody>
     </table>
 </body>
 </html>

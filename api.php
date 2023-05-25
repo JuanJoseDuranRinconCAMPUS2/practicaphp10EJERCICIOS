@@ -1,39 +1,49 @@
 <?php
-    // Construir el algoritmo que lea por teclado dos números,
-    // si el primero es mayor al segundo informar su suma y
-    // diferencia, en caso contrario, informar el producto y la
-    // división del primero respecto al segundo.
+    // Construir el algoritmo en Javascript para un programa
+    // para cualquier cantidad de estudiantes que lea el nombre,
+    // el sexo y la nota definitiva y halle al estudiante con la mayor
+    // nota y al estudiante con la menor nota y cuantos eran
+    // hombres y cuantos mujeres.
 
     header("Content-Type: application/json; charset:UTF-8");
     $_DATA = json_decode(file_get_contents("php://input"), true);
     $_METHOD = $_SERVER["REQUEST_METHOD"];
 
-    function Operacion($_DATA){
-        $mayor = max($_DATA["Numero1"], $_DATA["Numero2"]);
-        $operacion = match (true){ 
-            $mayor == $_DATA["Numero1"] => ["Operacion1" => ($_DATA["Numero1"] - $_DATA["Numero2"]), "Operacion2"=> ($_DATA["Numero1"] + $_DATA["Numero2"])],
-            $mayor == $_DATA["Numero2"] => ["Operacion1" => ($_DATA["Numero1"] * $_DATA["Numero2"]), "Operacion2"=> ($_DATA["Numero1"] / (($_DATA["Numero2"] == 0) ? 1 : $_DATA["Numero2"]))],
-            
-        };
-        return $operacion;
-    }
-    function mayor($_DATA){ 
-        $mayor = max($_DATA["Numero1"], $_DATA["Numero2"]);
-        return $mayor;
+    function Forms($variable){
+        $html = ''; 
 
+        for ($i = 1; $i <= $variable; $i++) {
+            $estudianteHTML = '
+            <fieldset id="dataForm">
+                <legend>#Estudiante ' . $i . '</legend>
+                <label>Ingresa el nombre del estudiante </label><br>
+                <input type="text" name="Nombre_' . $i . '"   required><br><br>
+                <label>Ingresa el genero del estudiante </label><br>
+                <select name="Genero_' . $i . '" required>
+                    <option value="M">Hombre</option>
+                    <option value="F">Mujer</option>
+                </select><br><br>
+                <label>Ingresa la nota del estudiante </label><br>
+                <input type="text" name="Nota_' . $i . '"   required><br>
+            </fieldset><br><br>
+            ';
+    
+            $html .= $estudianteHTML;
+        }
+    
+        return $html;
     }
+
     $validate = function($_DATA){
-        if (is_numeric($_DATA["Numero1"]) && is_numeric($_DATA["Numero2"])) {
-            $mensaje = (array) [
-                "Numero1" => $_DATA["Numero1"],
-                "Numero2" => $_DATA["Numero2"],
-                "Operaciones" => Operacion($_DATA),
-                "Mayor" => mayor($_DATA),
-
-            ];
-            echo json_encode($mensaje, JSON_PRETTY_PRINT);
+        if (is_numeric($_DATA["estudiantes"])) {
+            session_start();
+            $variable = $_DATA["estudiantes"];
+            $_SESSION['#Estudiantes'] = $variable;
+            $mensaje = Forms($variable);
+            echo $mensaje;
         }else {
-            $mensaje = "ERROR";
+            $mensaje = "<h1>ERROR datos no compatibles, ingresa un numero</h1>";
+            echo $mensaje;
         };
     };
 

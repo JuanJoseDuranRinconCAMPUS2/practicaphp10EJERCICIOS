@@ -7,29 +7,27 @@
     $_DATA = json_decode(file_get_contents("php://input"), true);
     $_METHOD = $_SERVER["REQUEST_METHOD"];
 
-    function Total($_DATA){
-        $subtotal = $_DATA["Cproducto"] * $_DATA["Pproducto"];
-        $Iva = $subtotal * 0.19;
-        $total = $subtotal + $Iva;
-        return $total; 
+    function CalculoCuadrado($_DATA){
+        $perimetroCuadrado = $_DATA["Cuadrado_Lado"] * 4;
+        return $perimetroCuadrado;
+    };
+    function CalculoRectangulo($_DATA){
+        $areaRestangulo = $_DATA["Rectangulo_Base"] * $_DATA["Rectangulo_Altura"];
+        return $areaRestangulo;
     };
     $validate = function($_DATA){
-        if (is_numeric($_DATA["ID"]) && is_numeric($_DATA["Pproducto"]) && is_numeric($_DATA["Cproducto"])) {
-            $mensaje = '
-                <h3> Factura </h3>
-                <h4> Datos del comprador </h4>
-                <p>Comprador: ' . $_DATA["Cliente"] .'</p>
-                <p>TI: ' . $_DATA["ID"] .'</p>
-                <h4> Datos del producto </h4>
-                <p>Nombre_Del_Producto: ' . $_DATA["Nproducto"] .'</p>
-                <p>Cantidad_Del_Producto: ' . $_DATA["Cproducto"] .'</p>
-                <p>Precio_Del_Producto: ' . $_DATA["Pproducto"] .'</p>
-                <p>Total: ' . Total($_DATA);'</p>
-            ';
-        echo $mensaje;
+        if (is_numeric($_DATA["Rectangulo_Base"]) && is_numeric($_DATA["Rectangulo_Altura"]) && is_numeric($_DATA["Cuadrado_Lado"])) {
+            $mensaje = (array) [
+                "Cuadrado_Lado" => $_DATA["Cuadrado_Lado"],
+                "Rectangulo_Base" => $_DATA["Rectangulo_Base"],
+                "Rectangulo_Altura" => $_DATA["Rectangulo_Altura"],
+                "PerimetroCuadrado" => CalculoCuadrado($_DATA),
+                "AreaRestangulo" => CalculoRectangulo($_DATA),
+
+            ];
+            echo json_encode($mensaje, JSON_PRETTY_PRINT);
         }else {
             $mensaje = "<h1>ERROR datos no compatibles, ingresa un numero</h1>";
-            echo $mensaje;
         };
     };
 

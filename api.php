@@ -1,33 +1,46 @@
 <?php
-//    Programa que pida el ingreso del nombre y precio de un artículo y la
-//    cantidad que lleva el cliente. Mostrar lo que debe pagar el comprador
-//    en su factura.
+// N atletas han pasado a finales en salto triple en los juegos
+// olímpicos femenino de 2022. Diseñe un programa que pida por
+// teclado los nombres de cada atleta finalista y a su vez, sus
+// marcas del salto en metros. Informar el nombre de la atleta
+// campeona que se quede con la medalla de oro y si rompió
+// récord, reportar el pago que será de 500 millones. El récord
+// esta en 15,50 metros.
 
     header("Content-Type: application/json; charset:UTF-8");
     $_DATA = json_decode(file_get_contents("php://input"), true);
     $_METHOD = $_SERVER["REQUEST_METHOD"];
 
-    function CalculoCuadrado($_DATA){
-        $perimetroCuadrado = $_DATA["Cuadrado_Lado"] * 4;
-        return $perimetroCuadrado;
-    };
-    function CalculoRectangulo($_DATA){
-        $areaRestangulo = $_DATA["Rectangulo_Base"] * $_DATA["Rectangulo_Altura"];
-        return $areaRestangulo;
-    };
-    $validate = function($_DATA){
-        if (is_numeric($_DATA["Rectangulo_Base"]) && is_numeric($_DATA["Rectangulo_Altura"]) && is_numeric($_DATA["Cuadrado_Lado"])) {
-            $mensaje = (array) [
-                "Cuadrado_Lado" => $_DATA["Cuadrado_Lado"],
-                "Rectangulo_Base" => $_DATA["Rectangulo_Base"],
-                "Rectangulo_Altura" => $_DATA["Rectangulo_Altura"],
-                "PerimetroCuadrado" => CalculoCuadrado($_DATA),
-                "AreaRestangulo" => CalculoRectangulo($_DATA),
+    function Forms($variable){
+        $html = ''; 
 
-            ];
-            echo json_encode($mensaje, JSON_PRETTY_PRINT);
+        for ($i = 1; $i <= $variable; $i++) {
+            $estudianteHTML = '
+            <fieldset id="dataForm">
+                <legend>#Atleta ' . $i . '</legend>
+                <label>Ingresa el nombre de la atleta </label><br>
+                <input type="text" name="NombreA_' . $i . '" required><br><br>
+                <label>Ingresa la marca de la Atleta</label><br>
+                <input type="text" name="Marca_' . $i . '"  pattern="[0-9-.]+" required><br>
+            </fieldset><br><br>
+            ';
+
+            $html .= $estudianteHTML;
+        }
+
+        return $html;
+    }
+
+    $validate = function($_DATA){
+        if (is_numeric($_DATA["Atletas"])) {
+            session_start();
+            $Atletas = $_DATA["Atletas"];
+            $_SESSION['#Atletas'] = $Atletas;
+            $mensaje = Forms($Atletas);
+            echo $mensaje;
         }else {
             $mensaje = "<h1>ERROR datos no compatibles, ingresa un numero</h1>";
+            echo $mensaje;
         };
     };
 

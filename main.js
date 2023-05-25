@@ -1,63 +1,56 @@
-// Programa que Ingrese por teclado:
-// a. el valor del lado de un cuadrado para mostrar por pantalla el
-// perímetro del mismo
-// b. la base y la altura de un rectángulo para mostrar el área del
-// mismo
+//N atletas han pasado a finales en salto triple en los juegos
+// olímpicos femenino de 2022. Diseñe un programa que pida por
+// teclado los nombres de cada atleta finalista y a su vez, sus
+// marcas del salto en metros. Informar el nombre de la atleta
+// campeona que se quede con la medalla de oro y si rompió
+// récord, reportar el pago que será de 500 millones. El récord
+// esta en 15,50 metros.
 
-let myFormCalculo = document.querySelector("#myFormCalculo");
-// 
+let myFormUsuarios = document.querySelector("#myFormUsuarios");
 let myHeaders = new Headers({"content-Type": "application/json"});
 let config = {
     headers : myHeaders,
 }
 
-myFormCalculo.addEventListener("submit", async(e)=>{
+myFormUsuarios.addEventListener("submit", async(e)=>{
+    e.preventDefault();
+    let data = Object.fromEntries(new FormData(e.target));
+    config.method = "POST";
+    config.body = JSON.stringify(data);
+    let res = await (await fetch("api.php", config)).text();
+    document.querySelector("#content").innerHTML = res;
+    document.querySelector("#button").innerHTML = '<input type="submit" value="Hecho"></input>';
+});
+
+let myFormNombres = document.querySelector("#myFormNombres");
+
+myFormNombres.addEventListener("submit", async(e)=>{
     e.preventDefault();
     let data = Object.fromEntries(new FormData(e.target));
     config.method = "POST";
     config.body = JSON.stringify(data);
     console.log(data);
-    let res = await (await fetch("api.php", config)).text();
+    let res = await (await fetch("atletasCalculo.php", config)).text();
     console.log(res);
     try {
         var resJS = JSON.parse(res);
-            console.log(resJS);
-            document.querySelector("#tableContent").innerHTML = `
-            <tr>
-                <th>Perimetro de un Cuadrado</th>
-                <td>${resJS.Cuadrado_Lado}</td>
-                <td>*</td>
-                <td>4</td>
-                <td>=</td>
-                <td>${resJS.PerimetroCuadrado}</td>
+        console.log(resJS);
+        document.querySelector("#tableContent").innerHTML = `
+            <tr id="contenidoPersona">
+                <th>Medalla De Oro</th>
+                <td>${resJS.MedallaDeOro.Nombre}</td>
+                <td>${resJS.MedallaDeOro.Marca}</td>
+                <td>${resJS.Premiacion}</td>
             </tr>
-            <tr>
-                <th>Area de un Rectangulo</th>
-                <td>${resJS.Rectangulo_Base}</td>
-                <td>*</td>
-                <td>${resJS.Rectangulo_Altura}</td>
-                <td>=</td>
-                <td>${resJS.AreaRestangulo}</td>
-            </tr>
-            `;
+        `;
     } catch (error) {
         document.querySelector("#tableContent").innerHTML = `
-            <tr>
+            <tr id="contenidoPersona">
                 <th>Error</th>
-                <td>Mal</td>
-                <td>Manejo</td>
-                <td>de</td>
-                <td>los</td>
-                <td>datos</td>
+                <td>Revisa</td>
+                <td>la</td>
+                <td>data</td>
             </tr>
-            <tr>
-            <th>Error</th>
-            <td>Mal</td>
-            <td>Manejo</td>
-            <td>de</td>
-            <td>los</td>
-            <td>datos</td>
-        </tr>
-            `;
+        `;
     }
 });

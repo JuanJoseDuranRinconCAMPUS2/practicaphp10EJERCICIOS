@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,52 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js" defer></script>
-    <title>Juegos Olimpicos</title>
+    <title>Sistema Ciclico</title>
 </head>
 <body>
-    <!-- N atletas han pasado a finales en salto triple en los juegos
-olímpicos femenino de 2022. Diseñe un programa que pida por
-teclado los nombres de cada atleta finalista y a su vez, sus
-marcas del salto en metros. Informar el nombre de la atleta
-campeona que se quede con la medalla de oro y si rompió
-récord, reportar el pago que será de 500 millones. El récord
-esta en 15,50 metros. -->
+    <!-- Desarrolle un programa cíclico que capture un dato
+numérico cada vez, y los vaya acumulando. El programa se
+detiene cuando el usuario digita un cero. El programa debe
+mostrar: LA SUMATORIA DE LOS VALORES, EL VALOR DEL
+PROMEDIO, CUÁNTOS VALORES FUERON DIGITADOS, MAYOR
+VALOR Y MENOR VALOR.. -->
 
 <fieldset>
-    <h3>Ingresa la siguiente data</h3>
-    <form id="myFormUsuarios">
+    <h3>Ingresa el siguiente numero (usa el 0 para ver los resultados)</h3>
+    <form id="myFormNumero">
         <fieldset>
             <legend># Atletas</legend>
-            <label>Ingresa el numero de Atletas a registrar </label><br>
-            <input type="text" name="Atletas" pattern="[0-9-.]+"  required><br>
+            <label>Ingresa el numero </label><br>
+            <input type="text" name="Numero" pattern="[0-9-.]+"  required><br>
         </fieldset><br>
         <button type="submit" value="Hecho">Hecho</button>
     </form>
 </fieldset>
-<br>
-<br>
-<br>
-<fieldset>
-    <h3>Ingresa la informacion de las Atletas</h3>
-    <form id="myFormNombres">     
-        <div id="content">
-            
-        </div>
-        <div id="button">
-
-        </div>
-    </form>
-</fieldset>
     <br>
     <br>
-    <br>
+  
+    </div>
     <table class="default" style="border-collapse: separate; border-spacing: 10px 5px;">     
         <thead>
             <tr>
-                <th scope="col">Premiacion</th>
-                <th>Nombre</th>
-                <th>Narca</th>
-                <th>Record</th>
+                <th scope="col">Sistema Ciclico</th>
+                <th>Numeros</th>
+                <th>Suma</th>
+                <th>Promedio</th>
+                <th>Lonigtud del array</th>
+                <th>Max Dato</th>
+                <th>Min Dato</th>
+
               </tr>
         </thead> 
         

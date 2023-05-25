@@ -8,19 +8,25 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- Construir el algoritmo en Javascript para un programa
-    para cualquier cantidad de estudiantes que lea el nombre,
-    el sexo y la nota definitiva y halle al estudiante con la mayor
-    nota y al estudiante con la menor nota y cuantos eran
-    hombres y cuantos mujeres. -->
+    <!-- Programa que pida el ingreso del nombre y precio de un artículo y la
+cantidad que lleva el cliente. Mostrar lo que debe pagar el comprador
+en su factura. -->
 
     <fieldset>
-        <h3>Ingresa la siguiente data</h3>
-        <form id="myFormUsuarios">
+        <h3>Ingresa informacion de compra</h3>
+        <form id="myFormCompra">
             <fieldset>
-                <legend># Estudiantes</legend>
-                <label>Ingresa el numero de estudiantes a registrar </label><br>
-                <input type="text" name="estudiantes"   required><br>
+                <legend>#Datos de compra</legend>
+                <label>Ingresa el tu nombre </label><br>
+                <input type="text" name="Cliente"   required><br>
+                <label>Ingresa el tu identificacion </label><br>
+                <input type="text" name="ID"   required><br>
+                <label>Ingresa el nombre del producto </label><br>
+                <input type="text" name="Nproducto"   required><br>
+                <label>Ingresa la cantidad del producto </label><br>
+                <input type="text" name="Cproducto"   required><br>
+                <label>Ingresa el valor del producto </label><br>
+                <input type="text" name="Pproducto"   required><br>
             </fieldset><br>
             <button type="submit" value="Hecho">Hecho</button>
         </form>
@@ -28,47 +34,9 @@
     <br>
     <br>
     <br>
-    <fieldset>
-        <h3>Ingresa la informacion de los estudiantes</h3>
-        <form id="myFormNombres">     
-            <div id="content">
-                
-            </div>
-            <div id="button">
-
-            </div>
-        </form>
-    </fieldset>
-
-    <br>
-    <br>
-    <table class="default" style="border-collapse: separate; border-spacing: 10px 5px;">     
-        <thead>
-            <tr>
-                <th scope="col">Puntuacion</th>
-                <th>Nombre</th>
-                <th>Genero</th>
-                <th>Nota</th>
-              </tr>
-        </thead> 
+    <pre>
         
-        <tbody id="tableContent">
 
-        </tbody>
-    </table>
-    <br>
-    <br>
-    <table class="default" style="border-collapse: separate; border-spacing: 10px 5px;">     
-        <thead>
-            <tr>
-                  <th scope="col">Cantidad</th>
-                  <th>#</th>
-            </tr>
-        </thead> 
-          
-        <tbody id="tableContentMyF">
-  
-        </tbody>
-    </table>
+    </pre>
 </body>
 </html>

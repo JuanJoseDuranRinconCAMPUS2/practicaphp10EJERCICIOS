@@ -18,6 +18,7 @@ myFormNumero.addEventListener("submit", async(e)=>{
     config.method = "POST";
     conjunto.push(data);
     config.body = JSON.stringify(conjunto);
+    myFormNumero.reset();
     let res = await (await fetch("api.php", config)).text();
     console.log(res);
     try {
@@ -31,11 +32,11 @@ myFormNumero.addEventListener("submit", async(e)=>{
             <tr>
                 <th scope="col">Operaciones</th>
                 <td>${numerosString}</td>
-                <td>${resJS.operacionD.Suma}</td>
-                <td>${resJS.operacionD.Promedio}</td>
-                <td>${resJS.operacionD.lengthDatos}</td>
-                <td>${resJS.operacionD.Max}</td>
-                <td>${resJS.operacionD.Min}</td>
+                <td>${resJS.Suma}</td>
+                <td>${resJS.Promedio}</td>
+                <td>${resJS.lengthDatos}</td>
+                <td>${resJS.Max}</td>
+                <td>${resJS.Min}</td>
             </tr>
         `;
     } catch (error) {

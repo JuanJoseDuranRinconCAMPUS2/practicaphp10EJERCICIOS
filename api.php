@@ -13,32 +13,60 @@ $_METHOD = $_SERVER["REQUEST_METHOD"];
 
 function operacionD($_DATA){
     $datos = array();
-    foreach($_DATA as $i){
+    foreach ($_DATA as $i) {
         $dato = floatval($i['Numero']);
         if (is_numeric($dato)) {
-            array_push($datos, $dato);
-        };
+            $datos[] = $dato;
+        }
     }
+    return $datos;
+};
+function suma($_DATA){
+    $datos = operacionD($_DATA);
     $suma = array_sum($datos);
+    if (in_array(0, $datos)) {
+        return $suma;
+    };
+};
+function Promedio($_DATA){
+    $datos = operacionD($_DATA);
+    $suma = suma($_DATA);
+    $numDatos = lengthDatos($_DATA);
+    $Promedio = $suma / $numDatos;
+    if (in_array(0, $datos)) {
+        return $Promedio;
+    };
+};
+function lengthDatos($_DATA){
+    $datos = operacionD($_DATA);
     $numDatos = count($datos);
-    $lengthDatos = $suma / $numDatos;
-    $Min = min($datos);
+    if (in_array(0, $datos)) {
+        return $numDatos;
+    }
+};
+function MaxD($_DATA){
+    $datos = operacionD($_DATA);
     $Max = max($datos);
-    if (in_array(0, $datos)){
-        return array(
-            "Suma" => $suma,
-            "Promedio" => $lengthDatos,
-            "lengthDatos" => $numDatos,
-            "Min" => $Min,
-            "Max" => $Max,
-        );
-    } 
+    if (in_array(0, $datos)) {
+        return $Max;
+    };
+};
+function MinD($_DATA){
+    $datos = operacionD($_DATA);
+    $Min = min($datos);
+    if (in_array(0, $datos)) {
+        return $Min;
+    };
 };
 function validate($_DATA){
     if (is_array($_DATA)) {
         $mensaje = (array) [
             "Num" => $_DATA,
-            "operacionD" => operacionD($_DATA),
+            "Suma" => suma($_DATA),
+            "Promedio" => Promedio($_DATA),
+            "lengthDatos" => lengthDatos($_DATA),
+            "Max" => MaxD($_DATA),
+            "Min" => MinD($_DATA),
         ];
         echo json_encode($mensaje, JSON_PRETTY_PRINT);
     }
